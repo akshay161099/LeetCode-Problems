@@ -1,0 +1,24 @@
+class Solution {
+    public int minimumCardPickup(int[] cards) {
+        int min = Integer.MAX_VALUE;
+        HashMap<Integer,Integer> hmap = new HashMap<Integer,Integer>();
+        boolean flag = true;
+        for(int i = 0;i<cards.length;i++)
+        {
+            if(hmap.containsKey(cards[i]))
+            {
+                min = Math.min(min,i-hmap.get(cards[i])+1);
+                flag = false;
+            }
+            else
+            {
+                hmap.put(cards[i],i);
+            }
+        }
+        if(flag == false)
+        {
+            return min;
+        }
+        return -1;
+    }
+}
