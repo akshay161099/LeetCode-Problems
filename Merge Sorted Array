@@ -1,0 +1,35 @@
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+    int i = 0, j = 0, k = 0;
+        int[] arr = new int[n+m];//to store the sorted elements from both arrays
+        while(i<m && j<n && k<m+n){
+            if(nums1[i] > nums2[j]){
+                arr[k] = nums2[j];//copy the smaller element from array nums2
+                k++;//increment the index of new array
+                j++;//increment the index of array nums2
+            }
+            else{
+                arr[k] = nums1[i];//copy the smaller element from array nums1
+                i++;//increment the index of array nums1
+                k++;//increment the index of new array
+            }
+        }
+        //Now copy the remaining elements into the new array(if there are any)
+        
+            while(i<m && k<m+n){
+                arr[k] = nums1[i];
+                k++;
+                i++;
+            }
+            while(j<n && k<m+n){
+                arr[k] = nums2[j];
+                k++;
+                j++;
+            }
+        //Now copy the new array to nums1 array
+        for(int temp = 0;temp<arr.length;temp++){
+            nums1[temp] = arr[temp];
+        }
+}
+
+    }
