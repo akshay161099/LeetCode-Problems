@@ -1,0 +1,15 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        int sum = 0;
+        int smaller = Integer.MAX_VALUE;
+        for(int i = 0;i<prices.length;i++){
+            if(prices[i] < smaller){
+                smaller = prices[i];
+            }
+            else if(prices[i] > sum + smaller){// or prices[i] - smaller > sum
+                sum = prices[i] - smaller;
+            }
+        }
+        return sum;
+    }
+}
