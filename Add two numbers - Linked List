@@ -1,0 +1,82 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode first = l1;
+        ListNode second = l2;
+        int count1 = 0;
+        int count2 = 0;
+        while(first!=null){
+            count1++;
+            first = first.next;
+        }
+        while(second!=null){
+            count2++;
+            second = second.next;
+        }
+        ListNode newHead = new ListNode(0);
+        ListNode temp = newHead;
+        first = l1;
+        second= l2;
+        int carry = 0;
+        int sum = 0;
+        while(first!=null && second!=null){
+            if(first.val+second.val+carry > 9){
+                
+                sum = (first.val+second.val+carry)%10;
+                carry = 1;
+            }
+            else{
+                
+                sum = first.val+second.val+carry;
+                carry = 0;
+            }
+            
+            temp.next = new ListNode(sum);
+            temp = temp.next;
+            first = first.next;
+            second = second.next;
+            
+        }
+        while(first!=null){
+            if(first.val+carry > 9){
+                sum = (first.val+carry)%10;
+                carry = 1;
+            }
+            else{
+                sum = first.val+carry;
+                carry = 0;
+            }
+            temp.next = new ListNode(sum);
+            temp = temp.next;
+            first = first.next;
+        }
+        while(second!=null){
+            if(second.val+carry > 9){
+                sum = (second.val+carry)%10;
+                carry = 1;
+            }
+            else{
+                sum = second.val+carry;
+                carry = 0;
+            }
+            temp.next = new ListNode(sum);
+            temp = temp.next;
+            second = second.next;
+        }
+        if(carry == 1){
+            temp.next = new ListNode(1);
+        }
+        return newHead.next;
+        
+        
+    }
+}
