@@ -1,0 +1,21 @@
+class Solution {
+    public int addDigits(int num) {
+        boolean flag = false;
+        while(!flag){
+            if(num/10 > 0){
+                num = helper(Integer.toString(num));
+            }
+            else{
+                flag = true;
+            }
+        }
+        return num;
+    }
+    public int helper(String s){
+        int res=0;
+        for(int i = 0;i<s.length();i++){
+            res+=Integer.parseInt(String.valueOf(s.charAt(i)));
+        }
+        return res;
+    }
+}
