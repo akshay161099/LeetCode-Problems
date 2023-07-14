@@ -1,0 +1,33 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+        int first = 0;
+        int second = 0;
+        int result = -1;
+        int temp = 0;
+        int i = 0;
+        boolean flag = false;
+        while(first<haystack.length() && second<needle.length()){
+            if(haystack.charAt(first) == needle.charAt(second)){
+                if(second == needle.length()){
+                    break;
+                }
+                if(!flag){
+                    temp = first;
+                    flag = true;
+                }
+                first++;
+                second++; 
+            }
+            else{
+                second = 0;
+                first = i + 1;
+                flag = false;
+                i = first;
+            }
+        }
+        if(second == needle.length()){
+            result = temp; 
+        }
+        return result;
+}
+}
