@@ -1,0 +1,28 @@
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int low = 0;
+        int high = nums.length-1;
+        int k = 0;
+        while(low<=high){
+            if(nums[low]!=val){
+                low++;
+                k++;
+            }
+            else if(nums[high] == val){
+                high--;
+            }
+            else if(nums[high]!=val){
+                swap(nums,low,high);
+                high--;
+                low++;
+                k++;
+            }
+        }
+        return k;
+    }
+    public void swap(int[] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
