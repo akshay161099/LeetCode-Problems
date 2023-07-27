@@ -1,0 +1,30 @@
+class Solution {
+    public String longestPalindrome(String s) {
+        if(s.length() == 0){
+            return "";
+        }if(s.length() == 1){
+            return s;
+        }
+        int start = 0;
+        int end = 0;
+        for(int i = 0;i<s.length();i++){
+            int len1 = checkPalindromeLength(i,i,s);
+            int len2 = checkPalindromeLength(i,i+1,s);
+            int result = Math.max(len1,len2);
+            if(result > end-start){
+                start = i- (result-1)/2;
+                end = i + result/2;
+            }
+        }
+        System.out.println(start+"  "+ end);
+        return s.substring(start,end+1);
+    }
+
+    public int checkPalindromeLength(int i,int j,String s){
+        while(i>=0 && j<s.length() && s.charAt(i) == s.charAt(j)){
+            i-=1;
+            j+=1;
+        }
+        return j-i-1;
+    }
+}
